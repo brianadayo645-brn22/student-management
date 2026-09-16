@@ -31,3 +31,10 @@ jobs:
           php -l app/index.php
           php -l app/db.php
           php -l app/test_db.php
+
+      - name: Test PostgreSQL connection
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y php-pgsql
+          php -r '$pdo = new PDO("pgsql:host=127.0.0.1;port=5432;dbname=student_db", "postgres", "rootpassword"); echo "Database connection successful!\n";'
+
