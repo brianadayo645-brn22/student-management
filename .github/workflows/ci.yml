@@ -1,0 +1,23 @@
+name: Student Management CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Check PHP syntax
+        run: |
+          php -l app/index.php
+          php -l app/db.php
+          php -l app/test_db.php
