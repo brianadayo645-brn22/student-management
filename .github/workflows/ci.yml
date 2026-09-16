@@ -38,3 +38,5 @@ jobs:
           sudo apt-get install -y php-pgsql
           php -r '$pdo = new PDO("pgsql:host=127.0.0.1;port=5432;dbname=student_db", "postgres", "rootpassword"); echo "Database connection successful!\n";'
 
+      - name: Biuld Docker Image
+        run: docker build -t student-management_app:ci
