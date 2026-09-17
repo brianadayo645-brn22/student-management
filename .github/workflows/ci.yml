@@ -38,5 +38,14 @@ jobs:
           sudo apt-get install -y php-pgsql
           php -r '$pdo = new PDO("pgsql:host=127.0.0.1;port=5432;dbname=student_db", "postgres", "rootpassword"); echo "Database connection successful!\n";'
 
-      - name: Biuld Docker Image
-        run: docker build -t student-management_app:ci .
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build Docker image
+        run: docker build -t briandoka/student-management:latest .
+
+      - name: Push Docker image
+        run: docker push briandoka/student-management:latest
