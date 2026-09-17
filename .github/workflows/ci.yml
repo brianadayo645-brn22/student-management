@@ -32,6 +32,9 @@ jobs:
           php -l app/db.php
           php -l app/test_db.php
 
+      - name: Run application tests
+        run: php tests/test_app.php
+
       - name: Test PostgreSQL connection
         run: |
           sudo apt-get update
